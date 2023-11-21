@@ -33,7 +33,7 @@ def plot_heatmap(scores, testing_data, n):
                     y=labels, zmin=0, zmax=1,
                     customdata=labels_individual,
                     hovertemplate='%{customdata} <br><b>Score:%{z:.3f}<extra></extra>',
-                    colorscale="burg"))
+                    colorscale="blues"))
     fig.update_layout({"height": height*28, "width": 1000,
                       "font": {"family": "Courier New"}})
     fig['layout']['yaxis']['autorange'] = "reversed"

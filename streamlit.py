@@ -21,6 +21,8 @@ with st.form("text_area"):
 
     submitted = st.form_submit_button("Check plagarism")
     if submitted:
+        st.divider()
+        st.subheader("Plagarism checking from original text")
         scores, testing_data = detect(train_text, test_text, n)
         st.plotly_chart(plot_heatmap(scores, testing_data, n),
                         use_container_width=True)
