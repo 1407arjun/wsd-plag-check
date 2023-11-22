@@ -29,12 +29,15 @@ def plot_heatmap(scores, testing_data, n):
 
     # create heatmap
     fig = go.Figure(data=go.Heatmap(
+                    text=labels_individual,
                     z=a, x0=0, dx=1,
-                    y=labels, zmin=0, zmax=1,
+                    # y=labels,
+                    zmin=0, zmax=1,
                     customdata=labels_individual,
                     hovertemplate='%{customdata} <br><b>Score:%{z:.3f}<extra></extra>',
+                    texttemplate='%{text}',
                     colorscale="blues"))
-    fig.update_layout({"height": height*28, "width": 1000,
+    fig.update_layout({"height": height*50, "width": 1000,
                       "font": {"family": "Courier New"}})
     fig['layout']['yaxis']['autorange'] = "reversed"
 
