@@ -57,24 +57,25 @@ class TreebankWordTokenizer:
                      r"(?i) ('t)(?#X)(was)\b"]
     CONTRACTIONS = list(map(re.compile, _contractions))
 
-    def tokenize(self, text):
-        for regexp, substitution in self.STARTING_QUOTES:
-            text = regexp.sub(substitution, text)
-            text = re.sub(r"\[.*\]|\{.*\}", "", text)
+    def tokenize(self, text, all=True):
+        if all:
+            for regexp, substitution in self.STARTING_QUOTES:
+                text = regexp.sub(substitution, text)
+                text = re.sub(r"\[.*\]|\{.*\}", "", text)
 
-        for regexp, substitution in self.PUNCTUATION:
-            text = regexp.sub(substitution, text)
-            text = re.sub(r'[^\w\s]', "", text)
+            for regexp, substitution in self.PUNCTUATION:
+                text = regexp.sub(substitution, text)
 
-        # Handles parentheses.
-        regexp, substitution = self.PARENS_BRACKETS
-        text = regexp.sub(substitution, text)
-
-        # Handles double dash.
-        regexp, substitution = self.DOUBLE_DASHES
-        text = regexp.sub(substitution, text)
-
-        for regexp, substitution in self.ENDING_QUOTES:
+            # Handles parentheses.
+            regexp, substitution = self.PARENS_BRACKETS
             text = regexp.sub(substitution, text)
 
+            # Handles double dash.
+            regexp, substitution = self.DOUBLE_DASHES
+            text = regexp.sub(substitution, text)
+
+            for regexp, substitution in self.ENDING_QUOTES:
+                text = regexp.sub(substitution, text)
+
+        text = re.sub(r'[^\w\s]', "", text)
         return text.split()

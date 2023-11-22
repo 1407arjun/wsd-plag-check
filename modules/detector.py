@@ -13,7 +13,7 @@ def detect(train_text, test_text, n):
     training_data = pad_sequence(tokenizer.tokenize(
         train_text.lower()), n, pad_left=True)
     testing_data = pad_sequence(tokenizer.tokenize(
-        test_text.lower()), n, pad_left=True)
+        test_text.lower(), False), n, pad_left=True)
 
     # generate ngrams
     ngrams = list(generate_ngrams(training_data, max_length=n))
