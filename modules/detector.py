@@ -2,7 +2,7 @@ from .utils import pad_sequence, generate_ngrams
 from .tokenizer import TreebankWordTokenizer
 from .lesk import load_synsets
 
-from nltk.lm import WittenBellInterpolated
+from .model import MLE
 import numpy as np
 
 tokenizer = TreebankWordTokenizer()
@@ -20,7 +20,7 @@ def detect(train_text, test_text, n):
     print("Number of ngrams in train text:", len(ngrams))
 
     # build ngram language models
-    model = WittenBellInterpolated(n)
+    model = MLE(n)
 
     synset_data = []
     for i, item in enumerate(training_data[n-1:]):
