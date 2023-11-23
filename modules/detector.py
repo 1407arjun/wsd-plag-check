@@ -33,7 +33,9 @@ def detect(train_text, test_text, n):
     # assign scores
     scores = []
     for i, item in enumerate(testing_data[n-1:]):
-        s = model.score(item, testing_data[i:i+n-1])
+        synsets = load_synsets(testing_data[i:i+n-1], item)
+        s = max([model.score(it, testing_data[i:i+n-1])
+                for it in ([item] + synsets if synsets else [item])])
         scores.append(s)
 
     return np.array(scores), testing_data
