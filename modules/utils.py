@@ -1,11 +1,15 @@
 from itertools import islice
 
 
+def plag_percentage(scores):
+    return sum([1 if s > 0.5 else 0 for s in scores])*100//len(scores)
+
+
 def pad_sequence(sequence, n, pad_left=False, pad_right=False):
     if pad_left:
-        sequence = ['']*n + sequence  # <s>
+        sequence = ['<s>']*n + sequence  # <s>
     if pad_right:
-        sequence = sequence + ['']*n  # </s>
+        sequence = sequence + ['</s>']*n  # </s>
     return sequence
 
 
