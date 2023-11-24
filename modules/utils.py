@@ -6,7 +6,7 @@ def plag_percentage(scores):
     if percent >= 85:
         return percent
     elif percent <= 30 and percent >= 15:
-        return percent + 20
+        return percent + 30
     return percent 
 
 
