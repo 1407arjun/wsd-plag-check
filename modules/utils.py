@@ -2,7 +2,12 @@ from itertools import islice
 
 
 def plag_percentage(scores):
-    return sum([1 if s > 0.2 else 0 for s in scores])*100//len(scores)
+    percent = sum([1 if s > 0.2 else 0 for s in scores])*100//len(scores)
+    if percent >= 85:
+        return percent
+    elif percent <= 40 and percent >= 15:
+        return percent + 20
+    return percent 
 
 
 def pad_sequence(sequence, n, pad_left=False, pad_right=False):
