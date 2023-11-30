@@ -5,12 +5,12 @@ from modules.plotly import plot_heatmap
 from modules.utils import plag_percentage
 
 st.set_page_config(
-    page_title='WSD-based Plagarism Detection',
+    page_title='WSD-based Plagiarism Detection',
     page_icon='🔎',
     layout="wide"
 )
 
-st.title('WSD-based Plagarism Detection')
+st.title('WSD-based Plagiarism Detection')
 
 # set ngrams
 n = 4
@@ -20,7 +20,7 @@ with st.form("text_area"):
     train_text = col1.text_area("Original text")
     test_text = col2.text_area("Text to be checked")
 
-    submitted = st.form_submit_button("Check plagarism")
+    submitted = st.form_submit_button("Check plagiarism")
     if submitted:
         scores, testing_data = detect(train_text, test_text, n)
         st.divider()
